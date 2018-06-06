@@ -5,7 +5,8 @@ import { CHARACTERS } from '../character-set';
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.css']
+  styleUrls: ['./characters.component.css'],
+
 })
 export class CharactersComponent implements OnInit {
   characters = CHARACTERS;
@@ -52,6 +53,11 @@ export class CharactersComponent implements OnInit {
     }
 
     //console.log('result = ' + this.result);
+  }
+
+  resetSelected = function() {
+    this.selectedRow = [];
+    this.result = [];
   }
 
 }

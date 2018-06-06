@@ -1,10 +1,8 @@
-<h3 class="text-info">Result</h3>
-<div class="panel panel-info">
-  <div class="panel-heading"></div>
+<div class="panel panel-primary" *ngIf="selectedRow.length > 1">
+  <div class="panel-heading"><b>Result</b></div>
 
-  <!-- <div *ngIf="selectedRow.length > 1"> -->
-
-    <table *ngIf="selectedRow.length > 1" class="table table-bordered table-xtra-condensed table-hover">
+  <div class="table-responsive">
+    <table style="text-align:center"  class="table table-bordered table-xtra-condensed table-hover">
         <tr>
           <td></td>
           <td *ngFor="let character of characters">
@@ -20,36 +18,40 @@
           </td>
         </tr>
     </table>
-  <!-- </div> -->
-  <div *ngIf="selectedRow.length == 0">
-    <p> Click on a row to select your first character! </p>
   </div>
-  <div *ngIf="selectedRow.length == 1">
-    <p> Almost there! Select another character to view matchup suggestion. </p>
-  </div>
+
+</div>
+<div *ngIf="selectedRow.length == 0" style="text-align:center">
+  <p> Click on a row to select your first character! </p>
+</div>
+<div *ngIf="selectedRow.length == 1" style="text-align:center">
+  <p> Almost there! Select another character to view matchup suggestion. </p>
 </div>
 
-<h3>Characters</h3>
-<div class="panel panel-default">
-  <div class="panel-heading"></div>
+<div class="panel panel-default " >
+  <div class="panel-heading">
+    <b>Characters</b>
+    <button type="button" class="btn btn-xs btn-default pull-right" (click)="resetSelected()" >Reset</button>
+  </div>
+  <div class="table-responsive">
 
+    <table style="text-align:center" class="table table-bordered table-xtra-condensed table-hover">
 
-  <table class="table table-bordered table-xtra-condensed table-hover">
+        <tr>
+          <td></td>
+          <td *ngFor="let character of characters">
+            <img src={{character.image}} data-toggle="tool-tip" title="{{character.name}}: {{character.id}}"/>
+          </td>
+        </tr>
+        <tr *ngFor="let character of characters; let i = index" (click)="setClickedRow(i)" [class.active]="selectedRow.includes(i)">
+          <td>
+            <img src={{character.image}} data-toggle="tool-tip" title="{{character.name}}: {{character.id}}"/>
+          </td>
+          <td *ngFor="let char of characters; let j = index">
+            {{character.matchups[j]}}
+          </td>
+        </tr>
 
-      <tr>
-        <td></td>
-        <td *ngFor="let character of characters">
-          <img src={{character.image}} data-toggle="tool-tip" title="{{character.name}}: {{character.id}}"/>
-        </td>
-      </tr>
-      <tr *ngFor="let character of characters; let i = index" (click)="setClickedRow(i)" [class.active]="selectedRow.includes(i)">
-        <td>
-          <img src={{character.image}} data-toggle="tool-tip" title="{{character.name}}: {{character.id}}"/>
-        </td>
-        <td *ngFor="let char of characters; let j = index">
-          {{character.matchups[j]}}
-        </td>
-      </tr>
-
-  </table>
+    </table>
+  </div>
 </div>
