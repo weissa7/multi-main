@@ -3,10 +3,22 @@
   color: white;
 }
 
-.table tr td.active {
+.table tr td.more {
   background-color:#428bca !important;
+  /* background-color:#DFF0D8 !important; */
   color: white;
 }
+
+.table tr td.even {
+  background-color: #FCEFA9 !important;
+  color: black;
+}
+
+.table tr td.less {
+  background-color: #F5A6A6 !important;
+  color: black;
+}
+
 
 
 

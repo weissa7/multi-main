@@ -13,7 +13,8 @@
           <td>
             <img src={{characters[choice].image}} data-toggle="tool-tip" title="{{characters[choice].name}}: {{characters[choice].id}}"/>
           </td>
-          <td *ngFor="let char of characters; let j = index" [class.active]="result[j] == choice">
+          <td *ngFor="let char of characters; let j = index" [class.more]="result[j] == choice" [class.even]="result[j] == -1" [class.less]="result[j] != choice && result[j] != -1">
+            <span *ngIf="characters[choice].matchups[j] == null">-</span>
             {{characters[choice].matchups[j]}}
           </td>
         </tr>
@@ -48,6 +49,7 @@
             <img src={{character.image}} data-toggle="tool-tip" title="{{character.name}}: {{character.id}}"/>
           </td>
           <td *ngFor="let char of characters; let j = index">
+
             {{character.matchups[j]}}
           </td>
         </tr>
